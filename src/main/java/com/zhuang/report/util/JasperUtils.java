@@ -32,6 +32,31 @@ public class JasperUtils {
     public static void toDocument(DocumentType documentType, InputStream jasperInputStream, OutputStream docOutputStream, Map params, Connection connection) {
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperInputStream, params, connection);
+            toDocument(documentType, jasperPrint, docOutputStream);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void toDocument(DocumentType documentType, String jasperFile, String docFile, Map params, JRDataSource dataSource) {
+        try {
+            toDocument(documentType, new FileInputStream(jasperFile), new FileOutputStream(docFile), params, dataSource);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void toDocument(DocumentType documentType, InputStream jasperInputStream, OutputStream docOutputStream, Map params, JRDataSource dataSource) {
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperInputStream, params, dataSource);
+            toDocument(documentType, jasperPrint, docOutputStream);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void toDocument(DocumentType documentType, JasperPrint jasperPrint, OutputStream docOutputStream) {
+        try {
             JRAbstractExporter exporter = null;
             ExporterOutput exporterOutput = null;
             if (documentType == DocumentType.Html) {
