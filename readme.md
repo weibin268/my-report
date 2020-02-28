@@ -4,7 +4,7 @@
 
 ### 设计器
 
-#### iReport Designer
+#### iReport Designer（旧）
 
 ##### PDF中文不显示
 
@@ -13,5 +13,6 @@
 3. 报表元素属性"PDF Embedded PDF Encoding" 将其改为"UniGB-UCS2-H(Chinese Simplified)" ；
 4. 2、3不用做，将报表元素属性中的字体改为“宋体”；
 
-#### Jaspersoft® Studio
+#### Jaspersoft® Studio（新）
 
+* 网址：https://community.jaspersoft.com/project/jaspersoft-studio
