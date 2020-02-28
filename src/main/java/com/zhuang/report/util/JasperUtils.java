@@ -1,6 +1,7 @@
 package com.zhuang.report.util;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
@@ -11,6 +12,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 import java.io.*;
 import java.sql.Connection;
+import java.util.Collection;
 import java.util.Map;
 
 public class JasperUtils {
@@ -53,6 +55,14 @@ public class JasperUtils {
         } catch (JRException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void toDocument(DocumentType documentType, String jasperFile, String docFile, Map params, Collection collection) {
+        toDocument(documentType,jasperFile,docFile,params,collection);
+    }
+
+    public static void toDocument(DocumentType documentType, InputStream jasperInputStream, OutputStream docOutputStream, Map params, Collection collection) {
+        toDocument(documentType, jasperInputStream, docOutputStream, params, new JRBeanCollectionDataSource(collection));
     }
 
     public static void toDocument(DocumentType documentType, JasperPrint jasperPrint, OutputStream docOutputStream) {

@@ -75,7 +75,7 @@ public class JasperUtilsTest {
         Person person = new Person();
         person.setName("zwb");
         dataList.add(person);
-        JasperUtils.toDocument(JasperUtils.DocumentType.Html, jasperFile, docFile, params, new JRBeanCollectionDataSource(dataList));
+        JasperUtils.toDocument(JasperUtils.DocumentType.Html, jasperFile, docFile, params, dataList);
     }
 
     @Test
