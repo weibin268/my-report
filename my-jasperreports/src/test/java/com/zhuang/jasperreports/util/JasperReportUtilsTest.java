@@ -1,7 +1,6 @@
-package com.zhuang.report.util;
+package com.zhuang.jasperreports.util;
 
 import com.zhuang.data.jdbc.JdbcUtils;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JasperUtilsTest {
+public class JasperReportUtilsTest {
 
     public static class Person {
         public String getId() {
@@ -47,7 +46,7 @@ public class JasperUtilsTest {
         InputStream jasperFile = getClass().getResourceAsStream("/jasper/test01.jasper");
         OutputStream docFile = new FileOutputStream(getClass().getResource("/jasper").getPath() + "/test01.xls");
         Map params = new HashMap();
-        JasperUtils.toDocument(JasperUtils.DocumentType.Xls, jasperFile, docFile, params, JdbcUtils.getConnection());
+        JasperReportUtils.toDocument(JasperReportUtils.DocumentType.Xls, jasperFile, docFile, params, JdbcUtils.getConnection());
     }
 
     @Test
@@ -55,7 +54,7 @@ public class JasperUtilsTest {
         InputStream jasperFile = getClass().getResourceAsStream("/jasper/test01.jasper");
         OutputStream docFile = new FileOutputStream(getClass().getResource("/jasper").getPath() + "/test01.pdf");
         Map params = new HashMap();
-        JasperUtils.toDocument(JasperUtils.DocumentType.Pdf, jasperFile, docFile, params, JdbcUtils.getConnection());
+        JasperReportUtils.toDocument(JasperReportUtils.DocumentType.Pdf, jasperFile, docFile, params, JdbcUtils.getConnection());
     }
 
     @Test
@@ -63,7 +62,7 @@ public class JasperUtilsTest {
         InputStream jasperFile = getClass().getResourceAsStream("/jasper/test01.jasper");
         OutputStream docFile = new FileOutputStream(getClass().getResource("/jasper").getPath() + "/test01.html");
         Map params = new HashMap();
-        JasperUtils.toDocument(JasperUtils.DocumentType.Html, jasperFile, docFile, params, JdbcUtils.getConnection());
+        JasperReportUtils.toDocument(JasperReportUtils.DocumentType.Html, jasperFile, docFile, params, JdbcUtils.getConnection());
     }
 
     @Test
@@ -75,12 +74,12 @@ public class JasperUtilsTest {
         Person person = new Person();
         person.setName("zwb");
         dataList.add(person);
-        JasperUtils.toDocument(JasperUtils.DocumentType.Html, jasperFile, docFile, params, dataList);
+        JasperReportUtils.toDocument(JasperReportUtils.DocumentType.Html, jasperFile, docFile, params, dataList);
     }
 
     @Test
     public void compile() {
-        String file = JasperUtils.compile(getClass().getResource("/jasper/test01.jrxml").getPath());
+        String file = JasperReportUtils.compile(getClass().getResource("/jasper/test01.jrxml").getPath());
         System.out.println(file);
     }
 }

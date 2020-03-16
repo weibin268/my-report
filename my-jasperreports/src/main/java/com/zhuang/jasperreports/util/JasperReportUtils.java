@@ -1,4 +1,4 @@
-package com.zhuang.report.util;
+package com.zhuang.jasperreports.util;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -15,7 +15,7 @@ import java.sql.Connection;
 import java.util.Collection;
 import java.util.Map;
 
-public class JasperUtils {
+public class JasperReportUtils {
 
     enum DocumentType {
         Html,
